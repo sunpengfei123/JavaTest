@@ -1,9 +1,10 @@
 package mathTest;
 
 import com.microsoft.z3.*;
+
 import java.util.HashMap;
 
-public class z3Test {
+public class IPTest {
     public static void main(String[] args) {
         try {
             HashMap<String, String> cfg = new HashMap<String, String>();
@@ -21,9 +22,6 @@ public class z3Test {
             BoolExpr equation = ctx.mkEq(left, right);
             s.add(equation);
             s.add(ctx.mkGt(a, ctx.mkReal(1)));
-            s.add(ctx.mkGt(y, ctx.mkReal(0)));
-            s.add(ctx.mkGt(c, ctx.mkReal(0)));
-            s.add(ctx.mkGt(e, ctx.mkReal(0)));
             Status result = s.check();
             if (result == Status.SATISFIABLE) {
                 System.out.println("model for: x + y*c*e = d + a, a > 1");
