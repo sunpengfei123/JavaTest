@@ -2218,17 +2218,29 @@ class JavaExample
         IntExpr xExp = ctx.mkIntConst("x");
         IntExpr yExp = ctx.mkIntConst("y");
 
+//        RealExpr xExp = ctx.mkRealConst("x");
+//        RealExpr yExp = ctx.mkRealConst("y");
+
+
+
         opt.Add(ctx.mkEq(ctx.mkAdd(xExp, yExp), ctx.mkInt(10)),
                 ctx.mkGe(xExp, ctx.mkInt(0)),
                 ctx.mkGe(yExp, ctx.mkInt(0)));
 
+
+
         // Set objectives.
-        Optimize.Handle mx = opt.MkMaximize(xExp);
-        Optimize.Handle my = opt.MkMaximize(yExp);
+//        Optimize.Handle mx = opt.MkMinimize(xExp);
+//        Optimize.Handle my = opt.MkMaximize(ctx.mkAdd(ctx.mkMul(xExp,xExp),ctx.mkMul(yExp,yExp)));
+
+        Optimize.Handle m = opt.MkMaximize(ctx.mkMul(yExp,yExp));
 
         System.out.println(opt.Check());
-        System.out.println(mx);
-        System.out.println(my);
+        System.out.println(opt.getModel().evaluate(xExp,true));
+        System.out.println(opt.getModel().evaluate(yExp,true));
+        System.out.println(opt.getModel());
+        System.out.println(m);
+
     }
 
     public void translationExample() {
@@ -2277,48 +2289,48 @@ class JavaExample
                 Context ctx = new Context(cfg);
 
                 p.optimizeExample(ctx);
-                p.basicTests(ctx);
-                p.castingTest(ctx);
-                p.sudokuExample(ctx);
-                p.quantifierExample1(ctx);
-                p.quantifierExample2(ctx);
-                p.logicExample(ctx);
-                p.parOrExample(ctx);
-                p.findModelExample1(ctx);
-                p.findModelExample2(ctx);
-                p.pushPopExample1(ctx);
-                p.arrayExample1(ctx);
-                p.arrayExample3(ctx);
-                p.bitvectorExample1(ctx);
-                p.bitvectorExample2(ctx);
-                p.parserExample1(ctx);
-                p.parserExample2(ctx);
-                p.parserExample5(ctx);
-                p.iteExample(ctx);
-                p.evalExample1(ctx);
-                p.evalExample2(ctx);
-                p.findSmallModelExample(ctx);
-                p.simplifierExample(ctx);
-                p.finiteDomainExample(ctx);
-                p.floatingPointExample1(ctx);
+//                p.basicTests(ctx);
+//                p.castingTest(ctx);
+//                p.sudokuExample(ctx);
+//                p.quantifierExample1(ctx);
+//                p.quantifierExample2(ctx);
+//                p.logicExample(ctx);
+//                p.parOrExample(ctx);
+//                p.findModelExample1(ctx);
+//                p.findModelExample2(ctx);
+//                p.pushPopExample1(ctx);
+//                p.arrayExample1(ctx);
+//                p.arrayExample3(ctx);
+//                p.bitvectorExample1(ctx);
+//                p.bitvectorExample2(ctx);
+//                p.parserExample1(ctx);
+//                p.parserExample2(ctx);
+//                p.parserExample5(ctx);
+//                p.iteExample(ctx);
+//                p.evalExample1(ctx);
+//                p.evalExample2(ctx);
+//                p.findSmallModelExample(ctx);
+//                p.simplifierExample(ctx);
+//                p.finiteDomainExample(ctx);
+//                p.floatingPointExample1(ctx);
                 // core dumps: p.floatingPointExample2(ctx);
             }
 
             { // These examples need proof generation turned on.
-                HashMap<String, String> cfg = new HashMap<String, String>();
-                cfg.put("proof", "true");
-                Context ctx = new Context(cfg);
-                p.proveExample1(ctx);
-                p.proveExample2(ctx);
-                p.arrayExample2(ctx);
-                p.tupleExample(ctx);
-                // throws p.parserExample3(ctx);
-                p.enumExample(ctx);
-                p.listExample(ctx);
-                p.treeExample(ctx);
-                p.forestExample(ctx);
-                p.unsatCoreAndProofExample(ctx);
-                p.unsatCoreAndProofExample2(ctx);
+//                HashMap<String, String> cfg = new HashMap<String, String>();
+//                cfg.put("proof", "true");
+//                Context ctx = new Context(cfg);
+//                p.proveExample1(ctx);
+//                p.proveExample2(ctx);
+//                p.arrayExample2(ctx);
+//                p.tupleExample(ctx);
+//                // throws p.parserExample3(ctx);
+//                p.enumExample(ctx);
+//                p.listExample(ctx);
+//                p.treeExample(ctx);
+//                p.forestExample(ctx);
+//                p.unsatCoreAndProofExample(ctx);
+//                p.unsatCoreAndProofExample2(ctx);
             }
 
             { // These examples need proof generation turned on and auto-config

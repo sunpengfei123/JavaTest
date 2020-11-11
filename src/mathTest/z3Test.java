@@ -28,8 +28,9 @@ public class z3Test {
             if (result == Status.SATISFIABLE) {
                 System.out.println("model for: x + y*c*e = d + a, a > 1");
                 System.out.print(s.getModel());
+                System.out.println();
                 System.out.println(a.toString());
-                Expr a_value = s.getModel().evaluate(a, false);
+                Expr a_value = s.getModel().evaluate(a, true);
                 System.out.println(a_value.toString());
             } else if (result == Status.UNSATISFIABLE)
                 System.out.println("unsat");
